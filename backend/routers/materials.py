@@ -1,4 +1,4 @@
-from fastapi import Response, status, HTTPException, Depends, APIRouter
+from fastapi import HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
 from typing import List
 from .. import schemas, models, oauth2
@@ -11,13 +11,13 @@ router = APIRouter(
 
 
 @router.get("", response_model=List[schemas.MaterialSchema])
-def list_materials(db: Session = Depends(get_db)):
+def list_materials(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     materials = db.query(models.Material).all()
     return materials
 
 
 @router.get("/{material_id}/availability")
-def check_material_availability(material_id: int, db: Session = Depends(get_db)):
+def check_material_availability(material_id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
     material = db.query(models.Material).filter(
         models.Material.material_id == material_id).first()
     if not material:

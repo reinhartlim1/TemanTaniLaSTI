@@ -1,6 +1,6 @@
-from fastapi import status, HTTPException, Depends, APIRouter
+from fastapi import  HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
-from .. import schemas, models, utils
+from .. import schemas, models, oauth2
 from ..database import get_db
 
 router = APIRouter(
@@ -10,7 +10,7 @@ router = APIRouter(
 
 
 @router.post("", response_model=schemas.PaymentSchema)
-def make_payment(order_id: int, db: Session = Depends(get_db)):
+def make_payment(order_id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     # Check if the order exists
     order = db.query(models.Order).filter(
