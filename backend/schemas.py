@@ -1,10 +1,5 @@
-from typing import List, Optional, Generic, TypeVar
-from pydantic import BaseModel, Field
-from pydantic.generics import GenericModel
-from . import models
-from uuid import UUID
-
-T = TypeVar('T')
+from typing import Optional
+from pydantic import BaseModel, EmailStr
 
 class UserSchema(BaseModel):
     user_id: Optional[int] = None
@@ -13,7 +8,7 @@ class UserSchema(BaseModel):
     role: Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class MaterialSchema(BaseModel):
     material_id: Optional[int] = None
@@ -22,7 +17,7 @@ class MaterialSchema(BaseModel):
     price_per_unit: Optional[float] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class OrderSchema(BaseModel):
     order_id: Optional[int] = None
@@ -33,7 +28,7 @@ class OrderSchema(BaseModel):
     status: Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class PaymentSchema(BaseModel):
     payment_id: Optional[int] = None
@@ -43,7 +38,7 @@ class PaymentSchema(BaseModel):
     payment_status: Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class WarehouseSchema(BaseModel):
     warehouse_id: Optional[int] = None
@@ -51,84 +46,35 @@ class WarehouseSchema(BaseModel):
     quantity_in_stock: Optional[float] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class PaymentSchema(BaseModel):
-    payment_id: Optional[int] = None
-    order_id: Optional[int] = None
-    amount: Optional[float] = None
-    payment_date: Optional[str] = None
-    payment_status: Optional[str] = None
+class Token(BaseModel):
+    access_token: str
+    token_type: str
 
-    class Config:
-        orm_mode = True
+class TokenData(BaseModel):
+    email: Optional[str] = None
 
+class UserOut(BaseModel):
+    id: int
+    username: str
+    email: EmailStr
 
-class Request(GenericModel, Generic[T]):
-    parameter: Optional[T] = Field(...)
+class UserCreate(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
 
-class RequestUser(BaseModel):
-    parameter: UserSchema = Field(...)
+    class Config():
+        from_attributes = True
 
-class RequestMaterial(BaseModel):
-    parameter: MaterialSchema = Field(...)
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
 
-class RequestOrder(BaseModel):
-    parameter: OrderSchema = Field(...)
+class OrderCreate(BaseModel):
+    material_id: int
+    quantity_ordered: float
 
-class RequestPayment(BaseModel):
-    parameter: PaymentSchema = Field(...)
-
-class RequestWarehouse(BaseModel):
-    parameter: WarehouseSchema = Field(...)
-
-class RequestPayment(BaseModel):
-    parameter: PaymentSchema = Field(...)
-
-class Response(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
-    result: Optional[T]
-
-def user_model_to_schema(user: models.User) -> UserSchema:
-    return UserSchema(
-        user_id=user.user_id,
-        username=user.username,
-        password=user.password,
-        role=user.role
-    )
-
-def material_model_to_schema(material: models.Material) -> MaterialSchema:
-    return MaterialSchema(
-        material_id=material.material_id,
-        material_name=material.material_name,
-        quantity_available=material.quantity_available,
-        price_per_unit=material.price_per_unit
-    )
-
-def order_model_to_schema(order: models.Order) -> OrderSchema:
-    return OrderSchema(
-        order_id=order.order_id,
-        user_id=order.user_id,
-        material_id=order.material_id,
-        quantity_ordered=order.quantity_ordered,
-        order_date=str(order.order_date),
-        status=order.status
-    )
-
-def payment_model_to_schema(payment: models.Payment) -> PaymentSchema:
-    return PaymentSchema(
-        payment_id=payment.payment_id,
-        order_id=payment.order_id,
-        amount=payment.amount,
-        payment_date=str(payment.payment_date),
-        payment_status=payment.payment_status
-    )
-
-def warehouse_model_to_schema(warehouse: models.Warehouse) -> WarehouseSchema:
-    return WarehouseSchema(
-        warehouse_id=warehouse.warehouse_id,
-        material_id=warehouse.material_id,
-        quantity_in_stock=warehouse.quantity_in_stock
-    )
+    class Config():
+        from_attributes = True
