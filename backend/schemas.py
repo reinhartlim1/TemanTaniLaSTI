@@ -53,6 +53,17 @@ class WarehouseSchema(BaseModel):
     class Config:
         orm_mode = True
 
+class PaymentSchema(BaseModel):
+    payment_id: Optional[int] = None
+    order_id: Optional[int] = None
+    amount: Optional[float] = None
+    payment_date: Optional[str] = None
+    payment_status: Optional[str] = None
+
+    class Config:
+        orm_mode = True
+
+
 class Request(GenericModel, Generic[T]):
     parameter: Optional[T] = Field(...)
 
@@ -70,6 +81,9 @@ class RequestPayment(BaseModel):
 
 class RequestWarehouse(BaseModel):
     parameter: WarehouseSchema = Field(...)
+
+class RequestPayment(BaseModel):
+    parameter: PaymentSchema = Field(...)
 
 class Response(GenericModel, Generic[T]):
     code: str
