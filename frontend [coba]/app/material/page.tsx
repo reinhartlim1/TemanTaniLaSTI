@@ -24,10 +24,11 @@ import {
   TableContainer,
   } from '@chakra-ui/react'
   import { BsCartCheckFill, BsTools } from 'react-icons/bs'
+import Sidebar from '@/components/sidebar'
   
 export default function Material() {
     return (
-    <Stack width="1440px" height="720px" maxWidth="100%" background="green.50">
+    <Stack width="100%" height="720px" maxWidth="100%" background="green.50">
       
       <Tabs
         align="center"

@@ -16,7 +16,7 @@ import {
   
   export default function Register(){
     return(
-    <Stack align='center' width="1440px" height="720px" maxWidth="100%" background="green.50">  
+    <Stack align='center' width="100%" height="720px" maxWidth="100%" background="green.50">  
       <Text style={{margin: '50px 0px' }}
         fontFamily="Inter"
         lineHeight="1.2"

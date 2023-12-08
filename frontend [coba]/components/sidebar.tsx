@@ -5,23 +5,9 @@ import { Link } from '@chakra-ui/react'
 import Image from "next/image";
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Sidebar({ children }){
-    const pathname = usePathname();
-  const isPathnamePemesanan =
-    pathname === "/" ||
-    pathname === "/pemesanan" ||
-    pathname === "/checkout" ||
-    pathname === "/keranjang" ||
-    pathname === "/pembayaran" ||
-    pathname === "/pembayaran-berhasil"||
-    pathname === "/material";
+export default function Sidebar(){
     return (
-        
-        <body className={inter.className}>
    
         <div className="container">
             {/* <Sidebar/> */}
@@ -30,6 +16,7 @@ export default function Sidebar({ children }){
             <Link href="/">
               <Image
                 src={"/teman-tani.png"}
+                alt="Teman Tani"
                 className="image"
                 width="96"
                 height="97"
@@ -75,8 +62,7 @@ export default function Sidebar({ children }){
             </div>
             <div className="box">
               <div className="navbar">
-                {isPathnamePemesanan && (
-                  <Box
+                <Box
                     w={"100%"}
                     display={"flex"}
                     alignItems={"center"}
@@ -106,12 +92,11 @@ export default function Sidebar({ children }){
                       ></Box>
                     </Box>
                   </Box>
-                )}
+               
               </div>
-              <div>{children}</div>
+             
             </div>
           </div>
-     
-          </body>
+
     )
 }
