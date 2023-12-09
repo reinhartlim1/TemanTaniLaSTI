@@ -43,7 +43,6 @@ export default function Detail({ params }: { params: any }) {
     fetchMaterial();
   });
 
-
   return (
     <Stack style={{ padding: 20, backgroundColor: "#F0FFF4" }}>
       <Card

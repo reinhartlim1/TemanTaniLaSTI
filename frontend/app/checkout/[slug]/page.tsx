@@ -14,13 +14,14 @@ import {
   NumberInputField,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  useToast,
 } from "@chakra-ui/react";
 
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 
 
@@ -32,7 +33,10 @@ export default function Checkout({ params }: { params: any }) {
     quantity_available: null,
     price_per_unit: null,
   });
+  const toast = useToast();
   const [count, setCount] = useState(1)
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchMaterial = async () => {
@@ -49,6 +53,42 @@ export default function Checkout({ params }: { params: any }) {
     };
     fetchMaterial();
   });
+
+  const handleOrder = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        "https://temantanilasti-production.up.railway.app/orders",
+        {
+          material_id: material.material_id,
+          quantity: count,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+      
+      toast({
+        title: "Pesanan berhasil dibuat",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      router.push(`/pembayaran/${response.data.order_id}`)
+    } catch (error) {
+      console.error("Fetch materials failed:", error);
+      toast({
+        title: "Pesanan gagal dibuat",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }
+
+  
 
   return (
     <VStack style={{ backgroundColor: "#F0FFF4", padding: "10px" }}>
@@ -221,8 +261,7 @@ export default function Checkout({ params }: { params: any }) {
         display={"flex"}
         justifyContent={"end"}
       >
-        <Link href="/pembayaran">
-        <Text
+        <Button
           bg={"#9C4221"}
           textColor={"white"}
           px={2}
@@ -231,10 +270,12 @@ export default function Checkout({ params }: { params: any }) {
           justifyContent={"center"}
           alignItems={"center"}
           height={10}
+          onClick={handleOrder}
+          isLoading={isLoading}
+          loadingText="Ordering"
         >
           Buat Pesanan
-        </Text>
-        </Link>
+        </Button>
       </Box>
     </VStack>
   );

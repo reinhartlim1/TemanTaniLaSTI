@@ -13,13 +13,13 @@ export default function PembarayanBerhasil() {
       backgroundColor={"#F0FFF4"}
       padding={5}
     >
-      <Link href="/">
+      <Link href="/material">
         <Box w={"100%"} display={"flex"} justifyContent={"center"}>
           <Image
             objectFit="cover"
             width={500}
             height={200}
-            maxW={{ base: "100%", sm: "300px" }}
+            // maxW={{ base: "100%", sm: "300px" }}
             src="/berhasil.png"
             alt="Caffe Latte"
           />
