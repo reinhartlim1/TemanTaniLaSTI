@@ -1,6 +1,8 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from .database import Base
+from sqlalchemy.sql.sqltypes import TIMESTAMP
+from sqlalchemy.sql.expression import text
 
 class User(Base):
     __tablename__ = "user"
@@ -26,7 +28,7 @@ class Order(Base):
     user_id = Column(Integer, ForeignKey('user.user_id'))
     material_id = Column(Integer, ForeignKey('material.material_id'))
     quantity_ordered = Column(Float)
-    order_date = Column(Date)
+    order_date = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     status = Column(String)
 
     user = relationship("User", back_populates="orders")
@@ -38,7 +40,7 @@ class Payment(Base):
     payment_id = Column(Integer, primary_key=True, index=True)
     order_id = Column(Integer, ForeignKey('order.order_id'))
     amount = Column(Float)
-    payment_date = Column(Date)
+    payment_date = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     payment_status = Column(String)
 
     order = relationship("Order", back_populates="payment")
