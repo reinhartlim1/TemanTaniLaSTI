@@ -15,6 +15,11 @@ def list_materials(db: Session = Depends(get_db), current_user: int = Depends(oa
     materials = db.query(models.Material).all()
     return materials
 
+@router.get("/{material_id}", response_model=schemas.MaterialSchema)
+def get_materials_by_id(material_id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+    materials = db.query(models.Material).filter(models.Material.material_id == material_id).first()
+    return materials
+
 
 @router.get("/{material_id}/availability")
 def check_material_availability(material_id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
