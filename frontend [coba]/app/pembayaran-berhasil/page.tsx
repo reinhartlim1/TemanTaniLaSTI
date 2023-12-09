@@ -13,7 +13,7 @@ export default function PembarayanBerhasil() {
       backgroundColor={"#F0FFF4"}
       padding={5}
     >
-      <Link href="/">
+      <Link href="/material">
         <Box w={"100%"} display={"flex"} justifyContent={"center"}>
           <Image
             objectFit="cover"
