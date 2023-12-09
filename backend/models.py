@@ -48,6 +48,7 @@ class Warehouse(Base):
     warehouse_id = Column(Integer, primary_key=True, index=True)
     material_id = Column(Integer, ForeignKey('material.material_id'))
     quantity_in_stock = Column(Float)
+    unit_type = Column(String)
 
     material = relationship("Material", back_populates="warehouse")
 
