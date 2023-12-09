@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel, EmailStr
+from datetime import datetime
 
 class UserSchema(BaseModel):
     user_id: Optional[int] = None
@@ -24,7 +25,7 @@ class OrderSchema(BaseModel):
     user_id: Optional[int] = None
     material_id: Optional[int] = None
     quantity_ordered: Optional[float] = None
-    order_date: Optional[str] = None
+    order_date: Optional[datetime] = None
     status: Optional[str] = None
 
     class Config:
@@ -34,7 +35,7 @@ class PaymentSchema(BaseModel):
     payment_id: Optional[int] = None
     order_id: Optional[int] = None
     amount: Optional[float] = None
-    payment_date: Optional[str] = None
+    payment_date: Optional[datetime] = None
     payment_status: Optional[str] = None
 
     class Config:
