@@ -82,7 +82,7 @@ export default function RootLayout({ children }) {
                     <Text fontSize={"x-large"} fontWeight={"bold"}>
                       Welcome, Tito Sutadi
                     </Text>
-                    <Box position={"relative"}>
+                    <Box position={"relative"} pr="10">
                       <Image
                         objectFit="cover"
                         width={50}
@@ -100,6 +100,7 @@ export default function RootLayout({ children }) {
                         borderColor={"white"}
                         bg={"green"}
                         borderRadius={"50%"}
+                        mr={"9"}
                       ></Box>
                     </Box>
                   </Box>
