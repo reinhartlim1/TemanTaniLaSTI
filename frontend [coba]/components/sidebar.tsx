@@ -10,8 +10,7 @@ export default function Sidebar(){
     return (
         <div className="container">
             {/* <Sidebar/> */}
-            <div className="sidebar">
-            
+            <div className="sidebar" style={{height:"100%"}}>       
             <Link href="/">
               <Image style={{alignItems: 'center', margin: '50px 70px'}}
                 src={"/teman-tani.png"}
@@ -61,9 +60,7 @@ export default function Sidebar(){
               </div>
               </Button>
               </Link>
-          
             </div>
           </div>
-
     )
 }

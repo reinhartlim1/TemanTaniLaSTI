@@ -35,7 +35,7 @@ export default function Pemesanan() {
   ];
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{height: '100vh', width: '100%'}}>
       <div
         style={{
           display: "flex",
