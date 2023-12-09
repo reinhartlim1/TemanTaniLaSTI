@@ -3,18 +3,17 @@ import { usePathname } from "next/navigation";
 import NextLink from 'next/link'
 import { Link } from '@chakra-ui/react'
 import Image from "next/image";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Button } from "@chakra-ui/react";
 import React from "react";
 
 export default function Sidebar(){
     return (
-   
         <div className="container">
             {/* <Sidebar/> */}
             <div className="sidebar">
             
             <Link href="/">
-              <Image
+              <Image style={{alignItems: 'center', margin: '50px 70px'}}
                 src={"/teman-tani.png"}
                 alt="Teman Tani"
                 className="image"
@@ -23,8 +22,9 @@ export default function Sidebar(){
               />
               </Link>
 
-              <Link as={NextLink} href="/material">
-              <div className="material">
+              <Link href="/material">
+              <Button colorScheme='orange' variant='ghost' style={{alignItems: 'center', margin: '20px 10px'}}>
+              <div className="material" style={{margin: '0px 30px'}}>
                 <svg
                   width="25"
                   height="25"
@@ -39,10 +39,12 @@ export default function Sidebar(){
                 </svg>
                 <h1>Material</h1>
               </div>
+              </Button>
               </Link>
 
               <Link href="/pemesanan">
-              <div className="order">
+              <Button colorScheme='orange' variant='ghost' style={{alignItems: 'center', margin: '20px 10px'}}>
+              <div className="order" style={{margin: '0px 50px 0px 30px'}}>
                 <svg
                   width="24"
                   height="24"
@@ -57,6 +59,7 @@ export default function Sidebar(){
                 </svg>
                 <h1>Order</h1>
               </div>
+              </Button>
               </Link>
           
             </div>

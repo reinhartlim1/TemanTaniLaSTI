@@ -1,11 +1,11 @@
 import styles from "./page.module.css";
-import { Card, Text, Image, Stack, Heading, CardBody } from "@chakra-ui/react";
+import { Card, Text, Image, Stack, Heading, CardBody, Box } from "@chakra-ui/react";
 import Link from "next/link";
 
 const Cards = ({ itemName, itemId, itemPrice }) => (
   <div>
     <Link href={`/pemesanan/${itemId}`}>
-      <Card maxW="sm">
+      <Card maxW="sm" bg="white">
         <CardBody>
           <Image
             src="/image.png"
@@ -57,6 +57,7 @@ export default function Pemesanan() {
             justifyContent: "center",
           }}
         >
+          <Link href="/keranjang">
           <svg
             width="24"
             height="24"
@@ -77,6 +78,7 @@ export default function Pemesanan() {
               fill="black"
             />
           </svg>
+          </Link>
         </div>
         <div>
           <input
@@ -90,7 +92,7 @@ export default function Pemesanan() {
           />
         </div>
       </div>
-      <div className={styles.box}>
+      <div className={styles.box} style={{ display: 'flex', justifyContent: 'center'}}>
         {arrItem.map((item, index) => (
           <Cards
             key={index}
@@ -99,7 +101,7 @@ export default function Pemesanan() {
             itemPrice={item.price}
           />
         ))}
+        </div>
       </div>
-    </div>
   );
 }

@@ -63,58 +63,39 @@ import {
         <TabPanels>  
           <TabPanel>
               <Card width="100%" height="330px" maxWidth="100%">
+              <Text
+              fontFamily="Inter"
+              lineHeight="1.5"
+              fontWeight="regular"
+              fontSize="14px"
+              color="black"
+            >
+            Username
+            </Text>
+            <Input style={{ margin: '0px 0px 50px 0px'}}
+              placeholder="Username"
+              size="lg"
+              width="371px"
+              height="48px"
+              maxWidth="100%"
+            />
 
-                <Text
-                  fontFamily="Inter"
-                  lineHeight="1.5"
-                  fontWeight="regular"
-                  fontSize="14px"
-                  color="black"
-                >
-                  Email
-                </Text>
-                <Input style={{ margin: '0px px 20px 0px'}} 
-                  placeholder="Email"
-                  size="lg"
-                  width=""
-                  height="48px"
-                  maxWidth="100%"
-                />
-
-                <Text
-                  fontFamily="Inter"
-                  lineHeight="1.5"
-                  fontWeight="regular"
-                  fontSize="14px"
-                  color="black"
-                >
-                  Username
-                </Text>
-                <Input style={{ margin: '0px 0px 20px 0px'}} 
-                  placeholder="Username"
-                  size="lg"
-                  width="371px"
-                  height="48px"
-                  maxWidth="100%"
-                />
-
-                <Text
-                fontFamily="Inter"
-                lineHeight="1.5"
-                fontWeight="regular"
-                fontSize="14px"
-                color="black"
-                >
-                  Password
-                </Text>
-                <Input style={{ margin: '0px 0px 20px 0px'}} 
-                  placeholder="Password"
-                  size="lg"
-                  width="371px"
-                  height="48px"
-                  maxWidth="100%"
-                />
-
+            <Text
+              fontFamily="Inter"
+              lineHeight="1.5"
+              fontWeight="regular"
+              fontSize="14px"
+              color="black"
+            >
+              Password
+            </Text>
+            <Input style={{ margin: '0px 0px 50px 0px'}}
+              placeholder="Password"
+              size="lg"
+              width="371px"
+              height="48px"
+              maxWidth="100%"
+            />
                 <Button colorScheme="orange">Register</Button>
               </Card>  
           </TabPanel>

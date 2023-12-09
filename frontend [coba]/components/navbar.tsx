@@ -19,7 +19,7 @@ export default function Navbar(){
                     <Text fontSize={"x-large"} fontWeight={"bold"}>
                       Welcome, Tito Sutadi
                     </Text>
-                    <Box position={"relative"}>
+                    <Box position={"relative"} pr="10">
                       <Image
                         objectFit="cover"
                         width={50}
@@ -29,7 +29,7 @@ export default function Navbar(){
                       />
                       <Box
                         position={"absolute"}
-                        right={0}
+                        right={9}
                         bottom={1}
                         w={4}
                         h={4}
@@ -39,7 +39,7 @@ export default function Navbar(){
                         borderRadius={"50%"}
                       ></Box>
                     </Box>
-                  </Box>           
+                  </Box>        
               </div>          
             </div>
     )

@@ -42,7 +42,7 @@ export default function Material() {
 
         <TabPanels>
             <TabPanel>
-                <div style={{ textAlign: 'right', margin: '10px 80px' }}>
+                <div style={{ textAlign: 'right', margin: '10px 80px'}}>
                     <input
                         style={{
                         borderWidth: 1,
