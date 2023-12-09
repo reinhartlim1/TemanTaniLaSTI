@@ -54,7 +54,7 @@ export default function Detail({ params }: { params: any }) {
         <Image
           objectFit="cover"
           maxW={{ base: "100%", sm: "300px" }}
-          src="/image.png"
+          src="/Image.png"
           alt="Caffe Latte"
         />
 

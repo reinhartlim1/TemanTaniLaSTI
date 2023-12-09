@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Box,
   VStack,
@@ -65,12 +65,13 @@ export default function Pembayaran({ params }: { params: any }) {
     };
     fetchMaterial();
   }, [order]);
-  
+
   const handlePayment = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://temantanilasti-production.up.railway.app/payment/"+ order.order_id,
+        "https://temantanilasti-production.up.railway.app/payment/" +
+          order.order_id,
         {
           order_id: order.order_id,
         },
@@ -96,7 +97,7 @@ export default function Pembayaran({ params }: { params: any }) {
       });
       console.error("Payment failed:", error);
     }
-  }
+  };
   return (
     <VStack
       display={"flex"}
@@ -126,7 +127,10 @@ export default function Pembayaran({ params }: { params: any }) {
           <Text w={400} fontWeight={"bold"}>
             Total Bayar
           </Text>
-          <Text>Rp{order.quantity_ordered*(material.price_per_unit*1000)+10000}</Text>
+          <Text>
+            Rp
+            {order.quantity_ordered * (material.price_per_unit * 1000) + 10000}
+          </Text>
         </HStack>
       </Stack>
       <Box
@@ -137,24 +141,22 @@ export default function Pembayaran({ params }: { params: any }) {
         display={"flex"}
         justifyContent={"center"}
       >
-  
-          <Button
-            bg={"#9C4221"}
-            textColor={"white"}
-            px={2}
-            borderRadius={8}
-            display={"flex"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            height={10}
-            cursor={"pointer"}
-            onClick={handlePayment}
-            isLoading={isLoading}
-            loadingText="Waiting for Payment"
-          >
-            Selesai
-          </Button>
-
+        <Button
+          bg={"#9C4221"}
+          textColor={"white"}
+          px={2}
+          borderRadius={8}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          height={10}
+          cursor={"pointer"}
+          onClick={handlePayment}
+          isLoading={isLoading}
+          loadingText="Waiting for Payment"
+        >
+          Selesai
+        </Button>
       </Box>
     </VStack>
   );

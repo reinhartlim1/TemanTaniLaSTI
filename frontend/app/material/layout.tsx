@@ -6,8 +6,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Flex style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', overflow:"hidden" }}>
-          <Box style={{ width: '200px' }}>
+        <Flex style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Box style={{ width: '270px' }}>
             <Sidebar/>
           </Box>
           <Box style={{ flexGrow: 1, height: '100vh', margin: 0, padding: 0 }}>

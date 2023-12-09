@@ -91,7 +91,7 @@ export default function Checkout({ params }: { params: any }) {
   
 
   return (
-    <VStack style={{ backgroundColor: "#F0FFF4", padding: "10px" }}>
+    <VStack style={{ backgroundColor: "#F0FFF4", padding: "10px", overflowY:"auto" }}>
       <HStack backgroundColor={"white"} height={100} width={"100%"} padding={5}>
         <Box w={"50%"}>
           <HStack>
