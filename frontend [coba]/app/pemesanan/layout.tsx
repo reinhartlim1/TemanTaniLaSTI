@@ -6,11 +6,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <Flex style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', height: '100vh' }}>
-          <Box style={{ width: '270px', height: '100vh', position: 'sticky'}}>
+        <Flex style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', height: '100%'}} >
+          <Box style={{ width: '270px', height: '100%'}}>
             <Sidebar/>
           </Box>
-          <Box style={{ flexGrow: 1, overflowY: 'auto' }}>
+          <Box style={{ flexGrow: 1 }}>
             <Navbar/>
             {children}
           </Box>
