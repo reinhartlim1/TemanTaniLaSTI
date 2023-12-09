@@ -9,7 +9,7 @@ router = APIRouter(
 )
 
 
-@router.post("", response_model=schemas.PaymentSchema)
+@router.post("/{order_id}", response_model=schemas.PaymentSchema)
 def make_payment(order_id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     # Check if the order exists
