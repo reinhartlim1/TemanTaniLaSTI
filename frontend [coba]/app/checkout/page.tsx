@@ -22,7 +22,7 @@ import Link from "next/link";
 
 export default function Checkout() {
   return (
-    <VStack style={{ backgroundColor: "#F0FFF4", padding: "10px" }}>
+    <VStack style={{ backgroundColor: "#F0FFF4", padding: "10px", overflowY:"auto"}}>
       <HStack backgroundColor={"white"} height={100} width={"100%"} padding={5}>
         <Box w={"50%"}>
           <HStack>
@@ -57,7 +57,6 @@ export default function Checkout() {
                     objectFit="cover"
                     width={200}
                     height={200}
-                    maxW={{ base: "100%", sm: "300px" }}
                     src="/image.png"
                     alt="Caffe Latte"
                   />
