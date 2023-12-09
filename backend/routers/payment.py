@@ -34,4 +34,12 @@ def make_payment(order_id: int, db: Session = Depends(get_db), current_user: int
     order.status = "Paid"
     db.commit()
 
+    warehouse = db.query(models.Warehouse).filter(order.material_id == models.Warehouse.material_id).first()
+    if warehouse:
+        warehouse.quantity_in_stock += order.quantity_ordered
+    else:
+        warehouse = models.Warehouse(material_id=order.material_id, quantity_in_stock=order.quantity_ordered)
+        db.add(warehouse)
+    db.commit()
+
     return payment
