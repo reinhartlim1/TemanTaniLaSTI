@@ -159,6 +159,7 @@ export default function Register() {
                   maxWidth="100%"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  type="email"
                 />
 
                 <Text
@@ -179,6 +180,7 @@ export default function Register() {
                   maxWidth="100%"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  type="password"
                 />
 
                 <Button colorScheme="orange" onClick={handleSignUp}>
@@ -207,6 +209,7 @@ export default function Register() {
                   maxWidth="100%"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  type="email"
                 />
 
                 <Text
@@ -227,6 +230,7 @@ export default function Register() {
                   maxWidth="100%"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  type="password"
                 />
 
                 <Button colorScheme="orange" onClick={handleLogin}>
