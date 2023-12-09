@@ -26,6 +26,7 @@ def make_payment(order_id: int, db: Session = Depends(get_db), current_user: int
     # Create payment
     payment = models.Payment(
         order_id=order_id, amount=order.quantity_ordered * price_per_unit)
+    payment.payment_status = "Paid"
     db.add(payment)
     db.commit()
     db.refresh(payment)
