@@ -56,7 +56,7 @@ class TokenData(BaseModel):
     email: Optional[str] = None
 
 class UserOut(BaseModel):
-    id: int
+    user_id: int
     email: EmailStr
 
 class UserCreate(BaseModel):
