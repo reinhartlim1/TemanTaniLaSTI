@@ -9,8 +9,16 @@ router = APIRouter(
     tags=["Warehouse"]
 )
 
+
 @router.get("", response_model=List[schemas.WarehouseStockSchema])
 def get_warehouse_stock(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
-    warehouse = db.query(models.Material.material_id,models.Material.material_name, models.Material.unit_type,models.Warehouse.quantity_in_stock).join(models.Warehouse).all()
-    print(warehouse)
+    warehouse = db.query(models.Material.material_id, models.Material.material_name,
+                         models.Material.unit_type, models.Warehouse.quantity_in_stock).join(models.Warehouse).all()
+    return warehouse
+
+
+@router.get("/low", response_model=List[schemas.WarehouseStockSchema])
+def get_low_warehouse_stock(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+    warehouse = db.query(models.Material.material_id, models.Material.material_name, models.Material.unit_type,
+                         models.Warehouse.quantity_in_stock).join(models.Warehouse).filter(models.Warehouse.quantity_in_stock < 5).all()
     return warehouse
