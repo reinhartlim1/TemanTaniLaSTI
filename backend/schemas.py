@@ -49,6 +49,13 @@ class WarehouseSchema(BaseModel):
     class Config:
         from_attributes = True
 
+class WarehouseStockSchema(BaseModel):
+    material_id: Optional[int] = None
+    material_name: Optional[str] = None
+    quantity_in_stock: Optional[float] = None
+    unit_type: Optional[str] = None
+    class Config:
+        from_attributes = True
 class Token(BaseModel):
     access_token: str
     token_type: str
