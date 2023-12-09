@@ -28,7 +28,7 @@ import Sidebar from '@/components/sidebar'
   
 export default function Material() {
     return (
-    <Stack width="100%" height="720px" maxWidth="100%" background="green.50">
+    <Stack width="100%" height="100%" maxWidth="100%" background="green.50">
       
       <Tabs
         align="center"

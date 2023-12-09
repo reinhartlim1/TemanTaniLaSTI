@@ -60,42 +60,6 @@ export default function Sidebar(){
               </Link>
           
             </div>
-            <div className="box">
-              <div className="navbar">
-                <Box
-                    w={"100%"}
-                    display={"flex"}
-                    alignItems={"center"}
-                    justifyContent={"space-between"}
-                  >
-                    <Text fontSize={"x-large"} fontWeight={"bold"}>
-                      Welcome, Tito Sutadi
-                    </Text>
-                    <Box position={"relative"}>
-                      <Image
-                        objectFit="cover"
-                        width={50}
-                        height={50}
-                        src="/avatar.png"
-                        alt="Caffe Latte"
-                      />
-                      <Box
-                        position={"absolute"}
-                        right={0}
-                        bottom={1}
-                        w={4}
-                        h={4}
-                        borderWidth={2}
-                        borderColor={"white"}
-                        bg={"green"}
-                        borderRadius={"50%"}
-                      ></Box>
-                    </Box>
-                  </Box>
-               
-              </div>
-             
-            </div>
           </div>
 
     )
