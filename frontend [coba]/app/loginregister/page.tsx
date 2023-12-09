@@ -41,6 +41,7 @@ import {
         background="white"
         boxShadow="base"
       >
+        <Box pt='2'>
         <Image style={{ textAlign: 'center', margin: '20px 0px' }}
             alt="Logo Teman Tani"
             src={"/teman-tani.png"}
@@ -49,9 +50,9 @@ import {
             height={74}
             priority
         />
+        </Box>
         <Tabs 
         align="center"
-        mt={4} // margin-top 4
         mx={20}
         >
           <TabList>
@@ -61,7 +62,7 @@ import {
 
         <TabPanels>  
           <TabPanel>
-              <Card width="371px" height="330px" maxWidth="100%">
+              <Card width="100%" height="330px" maxWidth="100%">
 
                 <Text
                   fontFamily="Inter"
@@ -72,10 +73,10 @@ import {
                 >
                   Email
                 </Text>
-                <Input style={{ margin: '0px 0px 20px 0px'}} 
+                <Input style={{ margin: '0px px 20px 0px'}} 
                   placeholder="Email"
                   size="lg"
-                  width="371px"
+                  width=""
                   height="48px"
                   maxWidth="100%"
                 />

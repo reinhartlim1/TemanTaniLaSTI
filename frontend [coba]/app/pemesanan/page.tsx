@@ -55,7 +55,6 @@ export default function Pemesanan() {
             backgroundColor: "white",
             borderRadius: 50,
             justifyContent: "center",
-            alignItems: "center",
           }}
         >
           <svg
