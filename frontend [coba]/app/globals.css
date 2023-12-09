@@ -20,7 +20,7 @@ body {
 
 .sidebar {
     background-color: #FEEBCB;
-    width: 370px;
+    width: 400px;
     height: 100%;
     font-size: large;
     padding-top: 10px;
@@ -43,7 +43,7 @@ body {
 }
 
 .order {
-    background-color: #F6AD55;
+    /* background-color: #F6AD55; */
     border-radius: 20px;
     display: flex;
     align-items: center;
