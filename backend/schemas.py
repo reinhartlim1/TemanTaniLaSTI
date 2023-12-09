@@ -72,7 +72,7 @@ class UserLogin(BaseModel):
 
 class OrderCreate(BaseModel):
     material_id: int
-    quantity_ordered: float
+    quantity: float
 
     class Config():
         from_attributes = True
