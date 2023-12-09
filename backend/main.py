@@ -12,3 +12,7 @@ app.include_router(user.router)
 app.include_router(orders.router)
 app.include_router(materials.router)
 app.include_router(payment.router)
+
+@app.get("/")
+def root():
+    return {"message": "Lasti API"}
