@@ -1,19 +1,20 @@
-import React from 'react'
+"use client";
+import React from "react";
 import {
-    Stack,
-    Box,
-    Icon,
-    Avatar,
-    AvatarBadge,
-    Text,
-    Tabs,
-    Tab,
-    TabPanels,
-    TabList,
-    TabPanel,
-    Input,
-    InputRightElement,
-    Table,
+  Stack,
+  Box,
+  Icon,
+  Avatar,
+  AvatarBadge,
+  Text,
+  Tabs,
+  Tab,
+  TabPanels,
+  TabList,
+  TabPanel,
+  Input,
+  InputRightElement,
+  Table,
   Thead,
   Tbody,
   Tfoot,
@@ -22,165 +23,142 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  } from '@chakra-ui/react'
-  import { BsCartCheckFill, BsTools } from 'react-icons/bs'
-import Sidebar from '@/components/sidebar'
-  
+  useToast,
+} from "@chakra-ui/react";
+import { BsCartCheckFill, BsTools } from "react-icons/bs";
+import Sidebar from "@/components/sidebar";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import axios from "../axios";
+
 export default function Material() {
-    return (
+  const router = useRouter();
+  const toast = useToast();
+  const [data, setData] = useState([]);
+  const [lowStock, setLowStock] = useState([]);
+
+  useEffect(() => {
+    const fetchStock = async () => {
+      try {
+        const response = await axios.get("/warehouse", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+        setData(response.data);
+      } catch (error) {
+        console.error("Fetch products failed:", error);
+      }
+    };
+    const fetchLowStock = async () => {
+      try {
+        const response = await axios.get("/warehouse/low", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+        setLowStock(response.data);
+      } catch (error) {
+        console.error("Fetch products failed:", error);
+      }
+    };
+    fetchStock();
+    fetchLowStock();
+  }, []);
+
+  console.log(data);
+  return (
     <Stack width="100%" height="720px" maxWidth="100%" background="green.50">
-      
       <Tabs
         align="center"
         mt={4} // margin-top 4
         mx={20}
       >
         <TabList>
-            <Tab>All</Tab>
-            <Tab>Available</Tab>
+          <Tab>All</Tab>
+          <Tab>Unvailable</Tab>
         </TabList>
 
         <TabPanels>
-            <TabPanel>
-                <Box style={{ textAlign: 'right', margin: '10px 80px' }}>
-                    <Input
-                        style={{
-                        borderWidth: 1,
-                        borderRadius: 7,
-                        borderColor: "gray",
-                    }}
-                    placeholder="Cari Produk di sini"
-                    />
-                </Box>
-                
-                <TableContainer  style={{ margin: '20px 80px', background:'white' }}>
-                    <Table variant='simple'>
-                        <Thead>
-                            <Tr>
-                                <Th>No</Th>
-                                <Th>Nama Material</Th>
-                                <Th>Jumlah Stok</Th>
-                                <Th>Satuan</Th>
-                            </Tr>
-                        </Thead>
+          <TabPanel>
+            <Box style={{ textAlign: "right", margin: "10px 80px" }}>
+              <Input
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 7,
+                  borderColor: "gray",
+                }}
+                placeholder="Cari Produk di sini"
+              />
+            </Box>
 
-                        <Tbody>
-                            <Tr>
-                                <Td>1</Td>
-                                <Td>Bibit Padi Tipe A</Td>
-                                <Td>0</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>2</Td>
-                                <Td>Bibit Padi Tipe B</Td>
-                                <Td>1</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>3</Td>
-                                <Td>Bibit Jagung Tipe A</Td>
-                                <Td>4</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>4</Td>
-                                <Td>Bibit Jagung Tipe B</Td>
-                                <Td>3</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>5</Td>
-                                <Td>Garu Sisir</Td>
-                                <Td>2</Td>
-                                <Td>Unit</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>6</Td>
-                                <Td>Cangkul</Td>
-                                <Td>5</Td>
-                                <Td>Unit</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>7</Td>
-                                <Td>Bibit Sawi</Td>
-                                <Td>0</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>8</Td>
-                                <Td>Bibit Kentang</Td>
-                                <Td>0</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                        </Tbody>
+            <TableContainer
+              style={{ margin: "20px 80px", background: "white" }}
+            >
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th>No</Th>
+                    <Th>Nama Material</Th>
+                    <Th>Jumlah Stok</Th>
+                    <Th>Satuan</Th>
+                  </Tr>
+                </Thead>
 
-                    </Table>
-                </TableContainer>
-            </TabPanel>
+                <Tbody>
+                  {data?.map((item, index) => (
+                    <Tr key={index}>
+                      <Td>{index + 1}</Td>
+                      <Td>{item.material_name}</Td>
+                      <Td>{item.quantity_in_stock}</Td>
+                      <Td>{item.unit_type}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </TabPanel>
 
-            <TabPanel>
-                <Box style={{ textAlign: 'right', margin: '10px 80px' }}>
-                    <Input
-                        style={{
-                        borderWidth: 1,
-                        borderRadius: 7,
-                        borderColor: "gray",
-                        }}
-                        placeholder="Cari Produk di sini"
-                    />
-                </Box>
+          <TabPanel>
+            <Box style={{ textAlign: "right", margin: "10px 80px" }}>
+              <Input
+                style={{
+                  borderWidth: 1,
+                  borderRadius: 7,
+                  borderColor: "gray",
+                }}
+                placeholder="Cari Produk di sini"
+              />
+            </Box>
 
-                <TableContainer  style={{ margin: '20px 80px', background:'white' }}>
-                    <Table variant='simple'>
-                        <Thead>
-                            <Tr>
-                                <Th>No</Th>
-                                <Th>Nama Material</Th>
-                                <Th>Jumlah Stok</Th>
-                                <Th>Satuan</Th>
-                            </Tr>
-                        </Thead>
+            <TableContainer
+              style={{ margin: "20px 80px", background: "white" }}
+            >
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th>No</Th>
+                    <Th>Nama Material</Th>
+                    <Th>Jumlah Stok</Th>
+                    <Th>Satuan</Th>
+                  </Tr>
+                </Thead>
 
-                        <Tbody>
-                            <Tr>
-                                <Td>1</Td>
-                                <Td>Bibit Padi Tipe B</Td>
-                                <Td>1</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>2</Td>
-                                <Td>Bibit Jagung Tipe A</Td>
-                                <Td>4</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>3</Td>
-                                <Td>Bibit Jagung Tipe B</Td>
-                                <Td>3</Td>
-                                <Td>Kilogram</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>4</Td>
-                                <Td>Garu Sisir</Td>
-                                <Td>2</Td>
-                                <Td>Unit</Td>
-                            </Tr>
-                            <Tr>
-                                <Td>5</Td>
-                                <Td>Cangkul</Td>
-                                <Td>5</Td>
-                                <Td>Unit</Td>
-                            </Tr>
-                        </Tbody>
-
-                    </Table>
-                </TableContainer>
-
-            </TabPanel>
+                <Tbody>
+                  {lowStock?.map((item, index) => (
+                    <Tr key={index}>
+                      <Td>{index + 1}</Td>
+                      <Td>{item.material_name}</Td>
+                      <Td>{item.quantity_in_stock}</Td>
+                      <Td>{item.unit_type}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </Stack>
-  )
-}  
+  );
+}

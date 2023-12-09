@@ -200,7 +200,7 @@ export default function Register() {
                 </Text>
                 <Input
                   style={{ margin: "0px 0px 50px 0px" }}
-                  placeholder="Username"
+                  placeholder="Email"
                   size="lg"
                   width="371px"
                   height="48px"

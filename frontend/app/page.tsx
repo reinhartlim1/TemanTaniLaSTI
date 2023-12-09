@@ -1,31 +1,37 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
+
+import {
+    Stack,
+    Text,
+    Button,
+  } from '@chakra-ui/react'
 
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col p-6" style={{ backgroundImage: 'url(/bg2.png)', backgroundSize: 'cover' }}>
-      <div className="flex justify-center items-center h-40 p-4 rounded-20">
-      </div>
-      <div className="flex items-center bg-gray-400 p-10 m-1 mt-[-20px] flex-col bg-opacity-70 rounded-20">
-  
-  <div className=" p-8 rounded-lg bg-opacity-80 rounded-20">
-    <p className="text-center text-orange-800 text-5xl font-bold font-inter"style={{ fontFamily: 'cursive' }}>Welcome to FlowerPath</p>
-  </div>
-  <div className="flex items-center justify-center mt-4">
-        <Link
-          href="/loginregister"
-          className="mx-auto flex items-center justify-center gap-5 self-start rounded-lg bg-green-600 px-6 py-5 text-sm font-medium text-white transition-colors hover:bg-green-500 md:text-base"
-        >
-          <span>Menuju Halaman Login</span>
-        </Link>
-      </div>
-</div>
+    <Stack align='center' width="100%" height="720px" maxWidth="100%" background="green.50">  
+    <Text style={{margin: '50px 0px' }}
+      fontFamily="Inter"
+      lineHeight="1.2"
+      fontWeight="bold"
+      fontSize="36px"
+      color="black"
+    >
+      Selamat Datang di Website Teman Tani!
+    </Text>
 
-      <div className="mt-5 flex flex-col gap-4 md:flex-row justify-center items-center p-5">
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Konten untuk bagian ini */}
-        </div>
-      </div>
-    </main>
+    <Image style={{alignItems: 'center', margin: '30px 30px'}}
+                src={"/teman-tani.png"}
+                alt="Teman Tani"
+                className="image"
+                width="96"
+                height="97"
+    />
+
+    <Link href='/loginregister'>
+    <Button colorScheme="orange" >Masuk ke Website Teman Tani</Button>
+    </Link>
+
+    </Stack>
   );
 }
