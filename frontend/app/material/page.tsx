@@ -42,8 +42,8 @@ export default function Material() {
 
         <TabPanels>
             <TabPanel>
-                <div style={{ textAlign: 'right', margin: '10px 80px' }}>
-                    <input
+                <Box style={{ textAlign: 'right', margin: '10px 80px' }}>
+                    <Input
                         style={{
                         borderWidth: 1,
                         borderRadius: 7,
@@ -51,7 +51,7 @@ export default function Material() {
                     }}
                     placeholder="Cari Produk di sini"
                     />
-                </div>
+                </Box>
                 
                 <TableContainer  style={{ margin: '20px 80px', background:'white' }}>
                     <Table variant='simple'>
@@ -120,8 +120,8 @@ export default function Material() {
             </TabPanel>
 
             <TabPanel>
-                <div style={{ textAlign: 'right', margin: '10px 80px' }}>
-                    <input
+                <Box style={{ textAlign: 'right', margin: '10px 80px' }}>
+                    <Input
                         style={{
                         borderWidth: 1,
                         borderRadius: 7,
@@ -129,7 +129,7 @@ export default function Material() {
                         }}
                         placeholder="Cari Produk di sini"
                     />
-                </div>
+                </Box>
 
                 <TableContainer  style={{ margin: '20px 80px', background:'white' }}>
                     <Table variant='simple'>
