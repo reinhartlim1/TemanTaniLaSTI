@@ -17,6 +17,7 @@ class Material(Base):
     material_name = Column(String, unique=True, index=True)
     quantity_available = Column(Float)
     price_per_unit = Column(Float)
+    unit_type = Column(String)
 
 class Order(Base):
     __tablename__ = "order"
@@ -48,7 +49,6 @@ class Warehouse(Base):
     warehouse_id = Column(Integer, primary_key=True, index=True)
     material_id = Column(Integer, ForeignKey('material.material_id'))
     quantity_in_stock = Column(Float)
-    unit_type = Column(String)
 
     material = relationship("Material", back_populates="warehouse")
 
