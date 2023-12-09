@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   Box,
   VStack,
@@ -23,29 +23,30 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-
-
 export default function Checkout({ params }: { params: any }) {
   const id = params.slug;
   const [material, setMaterial] = useState({
     material_id: null,
-    material_name:"",
+    material_name: "",
     quantity_available: null,
     price_per_unit: null,
   });
   const toast = useToast();
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(1);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchMaterial = async () => {
       try {
-        const response = await axios.get("https://temantanilasti-production.up.railway.app/materials/" + id, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        });
+        const response = await axios.get(
+          "https://temantanilasti-production.up.railway.app/materials/" + id,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          }
+        );
         setMaterial(response.data);
       } catch (error) {
         console.error("Fetch materials failed:", error);
@@ -69,14 +70,14 @@ export default function Checkout({ params }: { params: any }) {
           },
         }
       );
-      
+
       toast({
         title: "Pesanan berhasil dibuat",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      router.push(`/pembayaran/${response.data.order_id}`)
+      router.push(`/pembayaran/${response.data.order_id}`);
     } catch (error) {
       console.error("Fetch materials failed:", error);
       toast({
@@ -86,12 +87,12 @@ export default function Checkout({ params }: { params: any }) {
         isClosable: true,
       });
     }
-  }
-
-  
+  };
 
   return (
-    <VStack style={{ backgroundColor: "#F0FFF4", padding: "10px", overflowY:"auto" }}>
+    <VStack
+      style={{ backgroundColor: "#F0FFF4", padding: "10px", overflowY: "auto" }}
+    >
       <HStack backgroundColor={"white"} height={100} width={"100%"} padding={5}>
         <Box w={"50%"}>
           <HStack>
@@ -133,14 +134,22 @@ export default function Checkout({ params }: { params: any }) {
                     {material.material_name}
                   </Text>
                   <Text>RP {material.price_per_unit * 1000}</Text>
-                  <NumberInput min={1} size="lg" maxW={32} defaultValue={1} onChange={(e) =>setCount(parseInt(e))}>
+                  <NumberInput
+                    min={1}
+                    size="lg"
+                    maxW={32}
+                    defaultValue={1}
+                    onChange={(e) => setCount(parseInt(e))}
+                  >
                     <NumberInputField />
                     <NumberInputStepper>
                       <NumberIncrementStepper />
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                  <Text textColor={"#9C4221"}>RP {material.price_per_unit * count * 1000}</Text>
+                  <Text textColor={"#9C4221"}>
+                    RP {material.price_per_unit * count * 1000}
+                  </Text>
 
                   <Button
                     // leftIcon={<MdDeleteOutline />}
