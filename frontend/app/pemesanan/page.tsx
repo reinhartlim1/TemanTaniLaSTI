@@ -40,17 +40,6 @@ export default function Pemesanan() {
     const router = useRouter();
     const toast = useToast();
     const [materials, setMaterials] = useState([]);
-
-  const arrItem = [
-    { name: "Cangkul", price: "RP. 30.000" },
-    { name: "Bibit Padi Tipe A", price: "RP. 30.000" },
-    { name: "Bibit Jagung Tipe A", price: "RP. 30.000" },
-    { name: "Bibit Padi Tipe B", price: "RP. 30.000" },
-    { name: "Bibit Sawi", price: "RP. 30.000" },
-    { name: "Garu Sisir", price: "RP. 30.000" },
-    { name: "Bibit Jagung Tipe B", price: "RP. 30.000" },
-    { name: "Bibit Kentang", price: "RP. 30.000" },
-  ];
   useEffect(() => {
     const fetchMaterial = async () => {
         try {
