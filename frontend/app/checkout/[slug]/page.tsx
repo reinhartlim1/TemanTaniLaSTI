@@ -1,3 +1,4 @@
+'use client'
 import {
   Box,
   VStack,
@@ -18,9 +19,37 @@ import {
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 
-export default function Checkout() {
+
+export default function Checkout({ params }: { params: any }) {
+  const id = params.slug;
+  const [material, setMaterial] = useState({
+    material_id: null,
+    material_name:"",
+    quantity_available: null,
+    price_per_unit: null,
+  });
+  const [count, setCount] = useState(1)
+
+  useEffect(() => {
+    const fetchMaterial = async () => {
+      try {
+        const response = await axios.get("https://temantanilasti-production.up.railway.app/materials/" + id, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+        setMaterial(response.data);
+      } catch (error) {
+        console.error("Fetch materials failed:", error);
+      }
+    };
+    fetchMaterial();
+  });
+
   return (
     <VStack style={{ backgroundColor: "#F0FFF4", padding: "10px" }}>
       <HStack backgroundColor={"white"} height={100} width={"100%"} padding={5}>
@@ -57,22 +86,21 @@ export default function Checkout() {
                     objectFit="cover"
                     width={200}
                     height={200}
-                    maxW={{ base: "100%", sm: "300px" }}
                     src="/image.png"
                     alt="Caffe Latte"
                   />
                   <Text fontSize={"large"} fontWeight={"bold"} width={240}>
-                    Bibit Sawi
+                    {material.material_name}
                   </Text>
-                  <Text>RP 10.000</Text>
-                  <NumberInput size="lg" maxW={32} defaultValue={1}>
+                  <Text>RP {material.price_per_unit * 1000}</Text>
+                  <NumberInput min={1} size="lg" maxW={32} defaultValue={1} onChange={(e) =>setCount(parseInt(e))}>
                     <NumberInputField />
                     <NumberInputStepper>
                       <NumberIncrementStepper />
                       <NumberDecrementStepper />
                     </NumberInputStepper>
                   </NumberInput>
-                  <Text textColor={"#9C4221"}>RP 10.000</Text>
+                  <Text textColor={"#9C4221"}>RP {material.price_per_unit * count * 1000}</Text>
 
                   <Button
                     // leftIcon={<MdDeleteOutline />}
@@ -167,7 +195,7 @@ export default function Checkout() {
             <Text w={400} fontWeight={"semibold"}>
               Subtotal Produk
             </Text>
-            <Text>Rp10.000</Text>
+            <Text>Rp{material.price_per_unit * count * 1000}</Text>
           </HStack>
           <HStack gap={5}>
             <Text w={400} fontWeight={"semibold"}>
@@ -180,7 +208,7 @@ export default function Checkout() {
               Total Pembayaran
             </Text>
             <Text fontWeight={"bold"} textColor={"#9C4221"}>
-              Rp10.000
+              Rp{material.price_per_unit * count * 1000 + 10000}
             </Text>
           </HStack>
         </Box>

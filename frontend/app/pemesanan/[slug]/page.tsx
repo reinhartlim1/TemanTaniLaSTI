@@ -14,7 +14,7 @@ import Link from "next/link";
 
 import { FaCartShopping } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 
@@ -80,7 +80,7 @@ export default function Detail({ params }: { params: any }) {
                 Masukan ke keranjang
               </Button>
             </Link>
-            <Link href="/checkout">
+            <Link href={`/checkout/${id}`}>
               <Button
                 leftIcon={<FaCartShopping />}
                 colorScheme="teal"
