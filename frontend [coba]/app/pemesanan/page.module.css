@@ -1,0 +1,12 @@
+.container {
+    background-color: #F0FFF4;
+    padding: 10px;
+    height: 100vh;
+}
+
+.box {
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
